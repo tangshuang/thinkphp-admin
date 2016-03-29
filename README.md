@@ -39,9 +39,9 @@ use Common\Controller\BaseController;
 class HomeController extends BaseController {}
 ```
 
-就是这么简单。为什么要继承呢？因为BaseController可以帮你解决一些垮模块的操作定义，比如uploadPicture，几乎所有的模块都会用到图片上传。还有就是，在BaseController中我们提供了SETCONFIG()操作，可以初始化由后台添加的配置项，并且在_initialize中就已经调用了，在所有继承的控制器中，不用写_initialize或者写_initialize时执行parent::_initialize();就可以初始化配置。
+就是这么简单。为什么要继承呢？因为BaseController可以帮你解决一些垮模块的操作定义，比如uploadPicture，几乎所有的模块都会用到图片上传。还有就是，在BaseController中我们提供了SETCONFIG()操作，可以初始化由后台添加的配置项，并且在``_initialize``中就已经调用了，在所有继承的控制器中，不用写``_initialize``或者写``_initialize``时执行``parent::_initialize();``就可以初始化配置。
 
-第二个需要继承的，就是每个模块下的__Controller，为什么要取这么怪异的控制器名字呢？因为以__开头的控制器无法通过url进行访问，所以我们在每个模块中先创建一个__Controller，并且在这个控制器中继承BaseController，并且在这个控制器中写入各种鉴权判断，或者protected方法给其他子类共享。具体你可以去研究一下我写的Admin模块中的其他控制器。
+第二个需要继承的，就是每个模块下的``__Controller``，为什么要取这么怪异的控制器名字呢？因为以``__``开头的控制器无法通过url进行访问，所以我们在每个模块中先创建一个``__Controller``，并且在这个控制器中继承BaseController，并且在这个控制器中写入各种鉴权判断，或者protected方法给其他子类共享。具体你可以去研究一下我写的Admin模块中的其他控制器。
 
 3. 后台视图
 
