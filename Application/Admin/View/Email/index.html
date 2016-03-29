@@ -1,0 +1,32 @@
+<extend name="Base/base"/>
+
+<block name="body">
+	<div class="handler">
+		<a href="{:U('add')}" class="btn btn-blue-o btn-dialog">发送邮件</a>
+	</div>
+	<table class="list">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>接收者</th>
+			<th>内容</th>
+			<td>时间</td>
+			<th>状态</th>
+		</tr>
+		</thead>
+		<tbody>
+		<volist name="_list_" id="item">
+			<tr>
+				<td>{$item.id}</td>
+				<td>{$item.email}</td>
+				<td>{$item.content}</td>
+				<td>{$item.create_time}</td>
+				<td>{$item.result}</td>
+			</tr>
+		</volist>
+		</tbody>
+	</table>
+	<div class="pagenavi">
+		{$_page}
+	</div>
+</block>

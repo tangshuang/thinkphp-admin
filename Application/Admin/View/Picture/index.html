@@ -1,0 +1,60 @@
+<extend name="Base/base"/>
+
+<block name="body">
+	<div class="uploadify-queue">
+		<volist name="_list_" id="item">
+			<span class="uploadify-queue-item uploaded" style="background-image: url({$item.url})" data-id="{$item.id}" data-url="{$item.url}"></span>
+		</volist>
+		<span id="picture_manager_upload"></span>
+		<script>
+			var uploader = "{:U('Picture/upload',array('session_id'=>session_id()))}";
+		</script>
+	</div>
+	<div class="pagenavi" id="pagenavi">
+		{$_page}
+	</div>
+</block>
+
+<block name="script">
+	<script>
+		seajs.use(['uploadify'],function(uploadify){
+			// 允许上传
+			$('#picture_manager_upload').HHuploadify({
+				auto: true,
+				fileTypeExts: '*.jpg;*.png;*.jpeg;*.gif',
+				multi: true,
+				buttonText: '上传图片',
+				fileSizeLimit: 99999999,
+				uploader: uploader,
+				onUploadSuccess:function(file,result){
+					var instanceNumber = $('#picture_manager_upload').find('.uploadify').index('.uploadify') + 1;
+					$('#fileupload_'+instanceNumber+'_'+file.index).find('.delfilebtn').remove();
+				}
+			});
+			// 翻页
+			$('#main').scroll(function(){
+				var scrollTop = $('#main').scrollTop(), height = $('#content').height(), next = $('#pagenavi .current').next().attr('href');
+				if(next == undefined) {
+					$('#pagenavi').remove();
+					return;
+				}
+				if(height - scrollTop  < 400) {
+					var $this = $('#content');
+					if($this.attr('data-paging') == 1) return;
+					$this.attr('data-paging',1);
+					$.get(next,function(result){
+						var $html = $('<div>' + result + '</div>');
+						var content = $html.find('#content .uploadify-queue-item');
+						var pagenavi = $html.find('#pagenavi').html();
+						$('#picture_manager_upload').before(content);
+						$('#pagenavi').html(pagenavi);
+						next = $('#pagenavi .current').next().attr('href');
+						if(next == undefined)
+							$('#pagenavi').remove();
+						$this.removeAttr('data-paging');
+					});
+				}
+			}).scroll();
+		});
+	</script>
+</block>

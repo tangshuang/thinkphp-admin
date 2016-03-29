@@ -1,0 +1,36 @@
+#tinymce-imagemanager.dialog .dialog-main {
+    margin-top: -295px;
+}
+.tinymce-imagemanager-main {}
+.tinymce-imagemanager-title {
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+.tinymce-imagemanager-button {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 770px;
+    margin-top: 230px;
+    margin-left: -400px;
+    background: #fff;
+    padding: 10px 30px 30px 0;
+    text-align: right;
+}
+.tinymce-imagemanager-content .uploadify-queue-item.selected {
+    border-color: #9B410E !important;
+}
+.tinymce-imagemanager-content .uploadify-queue-item.selected:after {
+    content: '√';
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    background: #0078CC;
+    color: #fff;
+}

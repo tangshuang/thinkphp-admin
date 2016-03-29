@@ -1,0 +1,15 @@
+<volist name="_items_" id="item">
+    <tr>
+        <td style="text-indent: {$depth * 2}em;">{$item.title}</td>
+        <td>{$item.url}</td>
+        <td>
+            <eq name="item.hide" value="1">隐藏</eq>
+        </td>
+        <td>
+            <input type="checkbox" name="rule[]" value="{$item.id}" <if condition="in_array($item['id'],$exists)">checked</if> >
+        </td>
+    </tr>
+    <present name="item.children">
+        {:R('AdministratorGroup/tree',array($item['children'],$depth + 1,$exists))}
+    </present>
+</volist>

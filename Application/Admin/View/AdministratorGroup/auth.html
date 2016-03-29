@@ -1,0 +1,23 @@
+<extend name="Base/base" />
+
+<block name="body">
+    <form action="{:U('')}" method="post" class="form">
+        <table class="list">
+            <thead>
+            <tr>
+                <th>菜单</th>
+                <th>URL</th>
+                <th>隐藏？</th>
+                <th class="col-width-15">选择</th>
+            </tr>
+            </thead>
+            <tbody>
+            {:R('AdministratorGroup/tree',array($_menus_,0,$exists))}
+            </tbody>
+        </table>
+        <div style="margin: 20px 0;">
+            <button class="btn btn-blue" type="submit" name="action" value="submit">确 定</button>
+            <input type="hidden" name="id" value="{$id}">
+        </div>
+    </form>
+</block>

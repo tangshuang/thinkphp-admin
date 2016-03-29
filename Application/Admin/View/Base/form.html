@@ -1,0 +1,20 @@
+<extend name="Base/base"/>
+
+<block name="body">
+    <form action="{$action|default=U('')}" method="post" class="form">
+        <volist name="_fields_" id="field">
+            <div class="form-section">
+                <div class="form-head">
+                    <present name="field.title"><span class="form-title">{$field.title}</span></present>
+                    <present name="field.remark"><span class="form-remark">{$field.remark}</span></present>
+                </div>
+                <div class="field">
+                    <include file="Base/fields"/>
+                </div>
+            </div>
+        </volist>
+        <div class="form-button">
+            <button type="submit" class="btn btn-blue <present name="confirm">confirm</present> " <present name="confirm">data-confirm="{$confirm}"</present> >提交</button>
+        </div>
+    </form>
+</block>

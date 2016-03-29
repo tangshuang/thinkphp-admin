@@ -1,0 +1,63 @@
+<switch name="field.type">
+    <case value="text">
+        <input type="text" name="{$field.name}" value="{$field.value}" maxlength="{$field.maxlength}" class="form-text">
+    </case>
+    <case value="tel">
+        <input type="tel" name="{$field.name}" value="{$field.value}" maxlength="{$field.maxlength}" class="form-text">
+    </case>
+    <case value="number">
+        <input type="number" name="{$field.name}" value="{$field.value}" step="{$field.step|default=1}" min="{$field.min}" max="{$field.max}" class="form-number">
+    </case>
+    <case value="disabled">
+        <input type="text" name="{$field.name}" value="{$field.value}" class="form-disabled" disabled>
+    </case>
+    <case value="readonly">
+        <input type="text" name="{$field.name}" value="{$field.value}" class="form-readonly" readonly>
+    </case>
+    <case value="textarea">
+        <textarea name="{$field.name}" class="form-textarea">{$field.value}</textarea>
+        <notempty name="field.description"><br>{$field.description}</notempty>
+    </case>
+    <case value="select">
+        <select name="{$field.name}" class="form-select">
+            <foreach name="field.options" key="optionValue" item="opitionTitle">
+                <option value="{$optionValue}" <eq name="field.value" value="$optionValue">selected</eq> >{$opitionTitle}</option>
+            </foreach>
+        </select>
+    </case>
+    <case value="checkbox">
+        <foreach name="field.options" key="optionValue" item="opitionTitle">
+            <label class="form-checkbox"><input type="checkbox" name="{$field.name}[]" value="{$optionValue}" <if condition="in_array($optionValue,$field['values'])">checked</if> > {$opitionTitle}</label>
+        </foreach>
+    </case>
+    <case value="checkone"><!-- 使用select代替 -->
+        <foreach name="field.options" key="optionValue" item="opitionTitle">
+            <label class="form-checkbox"><input type="checkbox" name="{$field.name}" value="{$optionValue}" <eq name="field.value" value="$optionValue">checked</eq> > {$opitionTitle}</label>
+        </foreach>
+    </case>
+
+    <case value="uploadPicture">
+        <div class="upload-picture" id="upload-picture-{$key}" data-type="one" data-uploader="{:U('Picture/upload',array('session_id'=>session_id()))}" data-field="{$field.name}" data-image='{$field.image|json_encode}' data-title="{$field.itemTitle}"></div>
+    </case>
+    <case value="uploadPictureCount">
+        <div class="upload-picture" id="upload-picture-{$key}" data-type="count" data-uploader="{:U('Picture/upload',array('session_id'=>session_id()))}" data-fields='{$field.names|json_encode}' data-images='{$field.images|json_encode}' data-titles='{$field.itemTitles|json_encode}'></div>
+    </case>
+    <case value="uploadPictures">
+        <div class="upload-picture" id="upload-picture-{$key}" data-type="multi" data-uploader="{:U('Picture/upload',array('session_id'=>session_id()))}" data-field="{$field.name}" data-images='{$field.images|json_encode}' data-title="{$field.itemTitle}"></div>
+    </case>
+
+    <case value="editor">
+        <textarea class="editor" id="editor-{$key}" name="{$field.name}" rows="5" data-height="450" data-language_url="__STATIC__/TinymceEditor/langs/zh_CN.js" data-imagemanager_url="{:U('Picture/index')}">{$field.value}</textarea>
+    </case>
+
+    <case value="colorpicker">
+        <input type="text" name="{$field.name}" value="{$field.value}" class="form-{$field.type} colorpicker {hash:true,uppercase:false}">
+    </case>
+
+    <case value="html">
+        {$field.html}
+    </case>
+
+    <default/>
+        <input type="{$field.type}" name="{$field.name}" value="{$field.value}" class="form-{$field.type}">
+</switch>

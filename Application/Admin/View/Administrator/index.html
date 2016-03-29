@@ -1,0 +1,50 @@
+<extend name="Base/base"/>
+
+<block name="body">
+    <div class="handler">
+        <a href="{:U('add')}" class="btn btn-blue-o btn-dialog">新增</a>
+    </div>
+    <table class="list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>用户组</th>
+            <th>手机号</th>
+            <th class="col-width-10">状态</th>
+            <th class="col-width-15">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="_list_" id="item">
+            <tr>
+                <td>{$item.id}</td>
+                <td>{$item.username}</td>
+                <td>{$item.group_name}</td>
+                <td>{$item.mobile}</td>
+                <td>
+                    <switch name="item.status">
+                        <case value="-1">删除</case>
+                        <case value="0">禁用</case>
+                        <case value="1">有效</case>
+                    </switch>
+                </td>
+                <td>
+                    <a href="{:U('edit',array('id' => $item['id']))}" class="btn-dialog">编辑</a>
+                    <switch name="item.status">
+                        <case value="-1"><a href="{:U('status',array('id' => $item['id'],'value' => 0))}" class="ajax-get confirm">重启</a></case>
+                        <case value="0"><a href="{:U('status',array('id' => $item['id'],'value' => 1))}" class="ajax-get confirm">激活</a></case>
+                        <case value="1"><a href="{:U('status',array('id' => $item['id'],'value' => 0))}" class="ajax-get confirm">禁用</a></case>
+                    </switch>
+                    <neq name="item.status" value="-1">
+                        <a href="{:U('status',array('id' => $item['id'],'value' => -1))}" class="ajax-get confirm">删除</a>
+                    </neq>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    <div class="pagenavi">
+        {$_page}
+    </div>
+</block>

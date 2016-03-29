@@ -1,0 +1,21 @@
+<extend name="Base/base"/>
+
+<block name="body">
+    <div class="handler">
+        <a href="{:U('add')}" class="btn btn-blue-o btn-dialog">新增</a>
+    </div>
+    <table class="list">
+        <thead>
+        <tr>
+            <th>菜单</th>
+            <th>URL</th>
+            <td>隐藏？</td>
+            <th class="col-width-10">排序</th>
+            <th class="col-width-15">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {:R('AdminMenu/tree', array($_list_,0))}
+        </tbody>
+    </table>
+</block>

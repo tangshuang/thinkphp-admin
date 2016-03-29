@@ -1,0 +1,50 @@
+<extend name="Base/base"/>
+
+<block name="body">
+    <table class="list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>昵称</th>
+            <th>手机号</th>
+            <th>所在公司</th>
+            <th>所在空间</th>
+            <th class="col-width-10">状态</th>
+            <th class="col-width-15">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="_list_" id="item">
+            <tr>
+                <td>{$item.id}</td>
+                <td>{$item.nickname}</td>
+                <td>{$item.mobile}</td>
+                <td>{$item.company_name}</td>
+                <td>{$item.space_name}</td>
+                <td>
+                    <switch name="item.status">
+                        <case value="-2">挂失</case>
+                        <case value="-1">删除</case>
+                        <case value="0">禁用</case>
+                        <case value="1">正常</case>
+                    </switch>
+                </td>
+                <td>
+                    <gt name="item.status" value="0">
+                        <a href="{:U('status',array('id' => $item['id'],'value' => 0))}" class="ajax-get confirm">禁用</a>
+                        <a href="{:U('status',array('id' => $item['id'],'value' => -2))}" class="ajax-get confirm">挂失</a>
+                        <a href="{:U('status',array('id' => $item['id'],'value' => -1))}" class="ajax-get confirm">删除</a>
+                    </gt>
+                    <switch name="item.status">
+                        <case value="-2"><a href="{:U('status',array('id' => $item['id'],'value' => 1))}" class="ajax-get confirm">解挂</a></case>
+                        <case value="0"><a href="{:U('status',array('id' => $item['id'],'value' => 1))}" class="ajax-get confirm">激活</a></case>
+                    </switch>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    <div class="pagenavi">
+        {$_page}
+    </div>
+</block>

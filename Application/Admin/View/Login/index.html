@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录 - {:C('SITE_NAME')}</title>
+    <link href="__STATIC__/powertip/css/jquery.powertip.min.css" rel="stylesheet">
+    <link href="__CSS__/base.css" rel="stylesheet">
+    <link href="__CSS__/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="sidebar" id="sidebar">
+    <div class="container">
+        <div class="logo"></div>
+        <div class="slogen">让开发更精彩</div>
+    </div>
+</div>
+<div class="main" id="main">
+    <div class="container">
+        <div class="content" id="content">
+            <div class="introduce login-text">
+                <h1>随时随地为你的突发奇想开道</h1>
+                <p class="small indent name">{:C('SITE_NAME')} <small>—— developed by Tison</small></p>
+                <p>通过后台管理内部资源体系</p>
+                <p>APP端的内容下发、订单管理、消息推送</p>
+                <p>Web端内容管理、订单统一处理</p>
+                <p>统一的用户管理，APP、手机号、微信多端抵达</p>
+                <p><small>由于开发TPA的时候正好把它用到了阿基米的后台管理，所以这个登陆页面就直接用阿基米的吧</small></p>
+            </div>
+            <form method="post" action="{:U('login')}" class="login-form">
+                <div class="username"><input type="text" name="username" placeholder="用户名"></div>
+                <div class="password"><input type="password" name="password" placeholder="密码"></div>
+                <div class="submit"><button type="submit" class="btn btn-blue">登陆</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="__STATIC__/sea.js"></script>
+<script>
+    seajs.config({
+        base: '__JS__',
+        alias: {
+            jquery: '__STATIC__/jquery-2.2.0.min',
+            tip: '__STATIC__/powertip/js/jquery.powertip.min'
+        }
+    });
+    seajs.use(['jquery','tip','base','login']);
+</script>
+</body>
+</html>

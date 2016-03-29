@@ -1,0 +1,303 @@
+.header {
+    width: 100%;
+    height: 7%;
+    background: #121212;
+    overflow: hidden;
+}
+.header .container {
+    height: 100%;
+}
+.header .logo {
+    display: block;
+    float: left;
+    width: 15%;
+    height: 100%;
+}
+.header .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(../img/tpa.png) no-repeat left center;
+    background-size: 60%;
+}
+.header .main-nav {
+    float: left;
+    height: 100%;
+}
+.header .main-nav li {
+    float: left;
+    height: 100%;
+    display: table;
+}
+.header .main-nav li a {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+.header .main-nav li.current a {
+    background: #0066CC !important;
+}
+.header .main-nav li a:hover {
+    background: #0066ff;
+}
+.header .user-bar {
+    float: right;
+    color: #fff;
+    margin-right: 1em;
+    display: table;
+    height: 100%;
+}
+.header .user-bar .container {
+    display: table-cell;
+    vertical-align: middle;
+}
+.header .user-bar a {
+    color: #fff;
+}
+
+.sidebar {
+    width: 15%;
+    height: 93%;
+    float: left;
+    background: #1f1f1f;
+}
+.sidebar .container {
+    margin-top: 30px;
+}
+.sidebar .side-nav li {
+    width: 100%;
+}
+.sidebar .side-nav li a {
+    display: block;
+    padding: 8px 0;
+    padding-left: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+.sidebar .side-nav li.current a {
+    background: #333 !important;
+}
+.sidebar .side-nav li a:hover {
+    background: #444;
+}
+.sidebar .side-sub-nav li a {
+    padding-left: 40px;
+}
+
+.main {
+    width: 85%;
+    height: 93%;
+    float: left;
+    overflow-x: hidden;
+}
+.main .container {
+    min-height: 75%;
+    margin: 30px;
+    padding-bottom: 100px;
+    position: relative;
+}
+.main .title {}
+.main .description {
+    color: #999;
+    margin-bottom: 40px;
+}
+.main .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.main .copyright {
+    margin: 10px 0;
+    margin-top: 5px;
+    border-top: #ccc solid 1px;
+    padding-top: 5px;
+}
+.main .copyright .fl {
+    float: left;
+}
+.main .copyright .fr {
+    float: right;
+}
+
+table.list {
+    width: 100%;
+    border-collapse:collapse;
+}
+table.list th,
+table.list td {
+    text-align: left;
+    padding: 10px;
+}
+table.list thead tr {
+    border-bottom: #ccc solid 2px;
+}
+table.list tbody tr {
+    border-bottom: #ccc solid 1px;
+}
+table.list tbody tr:last-child {
+    border: 0;
+}
+table.list tbody tr:hover {
+    background: #f1f1f1;
+}
+
+.dialog {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+.dialog .dialog-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.8);
+}
+.dialog .dialog-main {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 800px;
+    height: 550px;
+    margin-top: -275px;
+    margin-left: -400px;
+    background: #fff;
+    box-shadow: 0 0 5px #333;
+}
+.dialog .dialog-main .dialog-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #444;
+    text-decoration: none;
+    font-size: 22px;
+}
+.dialog .dialog-main .dialog-container {
+    margin: 30px;
+    height: 490px;
+    overflow-x: hidden;
+    position: relative;
+}
+.dialog .dialog-main .dialog-close:hover {
+    color: #111;
+}
+.dialog .dialog-main .dialog-title {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+.dialog .login-text h1 {
+    color: #0099CC;
+    font-weight: normal;
+}
+.dialog .login-text .name {
+    margin: 1em 0 2em 0;
+    color: #999;
+}
+.dialog form.login-form {
+    margin-top: 40px;
+}
+.dialog form.login-form div {
+    margin: 15px 0;
+}
+.dialog form.login-form input {
+    width: 400px;
+    padding: 5px;
+    background: none;
+    border: 0;
+    border-bottom: #ccc solid 1px;
+    outline: none;
+}
+.dialog form.login-form button {
+    margin-top: 10px;
+    width: 410px;
+}
+
+.form {
+    max-width: 800px;
+    min-width: 420px;
+    margin-right: 20px;
+}
+.form .form-section {
+    clear: both;
+    margin: 20px 0;
+}
+.form .form-head {
+    margin-bottom: 10px;
+}
+.form .form-title {
+    font-size: 1.2em;
+}
+.form .form-remark {
+    font-size: .8em;
+    color: #999;
+}
+.form input[type=text],
+.form input[type=number],
+.form input[type=tel],
+.form input[type=password],
+.form input[type=email],
+.form input[type=url],
+.form input[type=datetime],
+.form input[type=date],
+.form input[type=time],
+.form textarea {
+    border: #ccc solid 1px;
+    background: none;
+    outline: none;
+    padding: 10px;
+    width: 400px;
+}
+.form textarea {
+    height: 120px;
+    resize: vertical;
+}
+.form select {
+    border: #ccc solid 1px;
+    background: none;
+    outline: none;
+    padding: 10px;
+}
+.form .form-checkbox {
+    display: inline-block;
+    margin-right: 2em;
+}
+.imageUploadContainer label {
+    visibility: hidden;
+}
+.form .form-button {
+    clear: both;
+}
+
+.pagenavi {
+    padding: 40px 0;
+    text-align: center;
+    clear: both;
+}
+.pagenavi span,
+.pagenavi a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: #ccc solid 1px;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius: 2px;
+    margin: 0 2px;
+}
+.pagenavi .current {
+    color: #999;
+}
+.pagenavi a:hover {
+    border-color: #0066CC;
+    background: #0066CC;
+    color: #fff;
+    text-decoration: none;
+}

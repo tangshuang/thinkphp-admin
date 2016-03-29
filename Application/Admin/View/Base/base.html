@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{$meta_title} - {:C('SITE_NAME')}</title>
+    <link href="__STATIC__/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="__STATIC__/datetimepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet">
+    <link href="__STATIC__/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="__STATIC__/powertip/css/jquery.powertip.min.css" rel="stylesheet">
+    <link href="__STATIC__/HHuploadify/HHuploadify.css" rel="stylesheet">
+    <link href="__CSS__/base.css" rel="stylesheet">
+    <link href="__CSS__/admin.css" rel="stylesheet">
+    <block name="style"></block>
+</head>
+<body>
+<div class="header" id="header">
+    <div class="container">
+        <div class="logo"><a href="{:U('Index/index')}"></a></div>
+        <ul class="main-nav" id="main-nav">
+            <volist name="_MENU_.nav_roots" id="item">
+                <neq name="item.hide" value="1">
+                    <li <if condition="$item['id'] eq $_MENU_['current'] OR $item['id'] eq $_MENU_['current_root']">class="current"</if>><a href="{:U($item['url'])}">{$item.title}</a></li>
+                </neq>
+            </volist>
+        </ul>
+        <div class="user-bar">
+            <div class="container">
+                <i class="fa fa-user"></i>
+                你好，<em>{$administrator['username']}</em>
+                <if condition="is_administrator()"><a href="{:U('Index/trashCache')}" class="trash-cache">清空缓存</a></if>
+                <a href="{:U('Ucenter/profile')}">个人资料</a>
+                <a href="{:U('Login/logout')}" class="logout">退出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sidebar" id="sidebar">
+    <div class="container">
+        <ul class="side-nav" id="side-nav">
+            <volist name="_MENU_.nav_children" id="item">
+                <neq name="item.hide" value="1">
+                    <li <if condition="$item['id'] eq $_MENU_['current_id']">class="current"</if>><a href="{:U($item['url'])}">{$item.title}</a></li>
+                    <notemtpy name="item.children">
+                        <ul class="side-sub-nav" id="side-sub-nav">
+                            <volist name="item.children" id="item">
+                                <neq name="item.hide" value="1">
+                                    <li <if condition="$item['id'] eq $_MENU_['current_id'] OR in_array($item['id'],$_MENU_['current_ancestry'])">class="current"</if>><a href="{:U($item['url'])}">{$item.title}</a></li>
+                                </neq>
+                            </volist>
+                        </ul>
+                    </notemtpy>
+                </neq>
+            </volist>
+        </ul>
+    </div>
+</div>
+<div class="main" id="main">
+    <div class="container">
+        <div class="content" id="content">
+            <present name="title"><h1 class="title">{$title}</h1></present>
+            <present name="description"><div class="description">{$description}</div></present>
+            <block name="body"></block>
+        </div>
+        <div class="footer">
+            <div class="copyright">
+                <div class="fl">{:C('SITE_NAME')}管理平台</div>
+                <div class="fr">{:SYSTEM_VERSION} developed by <a href="http://www.tangshuang.net" target="_blank">Tison</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__STATIC__/sea.js"></script>
+<script>
+    seajs.config({
+        base: '__JS__',
+        alias: {
+            jquery: '__STATIC__/jquery-2.2.0.min',
+            jqueryui: '__STATIC__/jquery-ui/jquery-ui.min',
+            datetimepicker: '__STATIC__/datetimepicker/jquery-ui-timepicker-addon.min',
+            colorpicker: '__STATIC__/colorpicker/jscolor',
+            tip: '__STATIC__/powertip/js/jquery.powertip.min',
+            dialog: '__STATIC__/dialog',
+            form: '__STATIC__/form',
+            page: '__STATIC__/page',
+            uploadify: '__STATIC__/HHuploadify/HHuploadify',
+            uploader: '__STATIC__/HHuploadify/HHuploadifyReady',
+            dragsort: '__STATIC__/jquery.dragsort-0.5.2.min',
+            tinymce: '__STATIC__/TinymceEditor/jquery.tinymce.min'
+        }
+    });
+    seajs.use(['jquery','base','admin']);
+</script>
+<block name="script"></block>
+</body>
+</html>
