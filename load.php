@@ -116,8 +116,6 @@ foreach(Constants::$DEFINE as $key => $value) {
     define($key,$value);
 }
 
-
-
 /**
  * 绑定模块
  */
@@ -125,18 +123,20 @@ foreach(Constants::$URL as $module => $url) {
     if($url == '') continue;
     if($_SERVER['SERVER_NAME'] == parse_url($url,PHP_URL_HOST)) {
         define('BIND_MODULE',ucfirst($module));
+        break;
     }
-    if(defined('BIND_MODULE') && BIND_MODULE == 'Api') {
-        //define('MODE_NAME','rest');
-        header('Access-Control-Allow-Origin:'.webapp_url());
-        header('Access-Control-Allow-Headers:X-Requested-With');
-        header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE');
-        if("OPTIONS" == $_SERVER['REQUEST_METHOD']) {
-            header("HTTP/1.1 200 OK");
-            exit;
-        }
-        //echo $_SERVER['HTTP_ACCEPT'];exit;
+}
+
+if(defined('BIND_MODULE') && BIND_MODULE == 'Api') {
+    //define('MODE_NAME','rest');
+    header('Access-Control-Allow-Origin:'.webapp_url());
+    header('Access-Control-Allow-Headers:X-Requested-With');
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE');
+    if("OPTIONS" == $_SERVER['REQUEST_METHOD']) {
+        header("HTTP/1.1 200 OK");
+        exit;
     }
+    //echo $_SERVER['HTTP_ACCEPT'];exit;
 }
 
 

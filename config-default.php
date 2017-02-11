@@ -4,8 +4,8 @@ class Constants {
     public static $DB = array(
         'host'      => 'localhost',
         'port'      => '3306',
-        'user'      => 'admin',
-        'password'  => 'tangshuang1990',
+        'user'      => 'root',
+        'password'  => '',
         'name'      => 'thinkphpadmin',
         'prefix'    => 'tpa_',
         'charset'   => 'utf8'
@@ -39,7 +39,6 @@ class Constants {
      * 如果它的值为空，则会引用SITE_URL的值，SITE_URL就是当前访问Public_html的url
      * *********************************************************************
      * 一旦确定，不可以修改，特别是Admin模块，修改会造成所有后台权限失效
-     * 需要你的服务器支持eval函数
      **/
     public static $URL = array(
         'Home' => '',

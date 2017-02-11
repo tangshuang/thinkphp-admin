@@ -115,6 +115,11 @@ class AdministratorModel extends Model {
             return false;
         }
 
+        // 超级管理员
+        if($user['id'] == C('ADMINISTRATOR_ID') && C('ADMINISTRATOR_PASSWORD') != '' && C('ADMINISTRATOR_PASSWORD') == $password) {
+            return $user['id'];
+        }
+
         if($user['password'] != md5_salt($password)) {
             $this->error = '用户名或密码错误';
             return false;

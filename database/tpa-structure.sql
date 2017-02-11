@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS  `tpa_admin_menu`;
+DROP TABLE IF EXISTS  `tpa_admin_menu`;
 CREATE TABLE `tpa_admin_menu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上级菜单ID',
@@ -37,6 +37,18 @@ CREATE TABLE `tpa_administrator_group` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户组';
+
+DROP TABLE IF EXISTS  `tpa_admin_rule`;
+CREATE TABLE `tpa_admin_rule` (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `md5` char(16) NOT NULL COMMENT '用于检索的md5值',
+  `title` varchar(32) NOT NULL COMMENT '规则名称',
+  `url` varchar(255) NOT NULL COMMENT '规则路径',
+  `controller` varchar(64) NOT NULL DEFAULT '' COMMENT '控制器名',
+  `sort` smallint(4) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `md5` (`md5`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='管理员权限';
 
 DROP TABLE IF EXISTS  `tpa_config`;
 CREATE TABLE `tpa_config` (
@@ -96,17 +108,17 @@ CREATE TABLE `tpa_user_info` (
 DROP TABLE IF EXISTS  `tpa_news`;
 CREATE TABLE `tpa_news` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(160) NOT NULL,
-  `excerpt` varchar(255) NOT NULL,
+  `title` varchar(160) NOT NULL DEFAULT '',
+  `excerpt` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `category_id` int(10) NOT NULL,
-  `is_recommended` tinyint(1) NOT NULL,
-  `is_video` tinyint(1) NOT NULL,
-  `cover_image_id` int(10) NOT NULL,
-  `create_time` datetime NOT NULL,
+  `category_id` int(10) NOT NULL DEFAULT '0',
+  `is_recommended` tinyint(1) NOT NULL DEFAULT '0',
+  `is_video` tinyint(1) NOT NULL DEFAULT '0',
+  `cover_image_id` int(10) NOT NULL DEFAULT '0',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `view_count` int(10) NOT NULL,
+  `view_count` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
@@ -114,10 +126,10 @@ CREATE TABLE `tpa_news` (
 DROP TABLE IF EXISTS  `tpa_news_category`;
 CREATE TABLE `tpa_news_category` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `slug` varchar(16) NOT NULL,
-  `title` varchar(32) NOT NULL,
+  `slug` varchar(16) NOT NULL DEFAULT '',
+  `title` varchar(32) NOT NULL DEFAULT '',
   `detail` tinytext NOT NULL,
-  `sort` smallint(4) NOT NULL,
+  `sort` smallint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;

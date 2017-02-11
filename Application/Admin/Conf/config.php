@@ -1,8 +1,9 @@
 <?php
 
 return array(
-    // 管理员ID
+    // 超级管理员
     'ADMINISTRATOR_ID' => 1,
+    'ADMINISTRATOR_PASSWORD' => '123456',
 
     /* 数据缓存设置 */
     'DATA_CACHE_PREFIX'    => MODULE_NAME.'_',
