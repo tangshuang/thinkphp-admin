@@ -22,8 +22,6 @@ thinkphp admin 顾名思义，就是基于thinkphp的一个后台管理框架啦
 
 把Application、public_html、ThinkPHP、config-default.php、load.php上传到服务器上，将public_html目录作为网站访问的根目录。也就是说，你的域名得绑定到public_html目录，但是域名访问的网站得对上一级目录有可写权限，要实现这一点你可能得了解一下apache的配置。之所以要有这个可写权限，是因为缓存、运行时等都要写入文件。
 
-上传完成之后，得在public_html目录下创建一个Uploads目录，在Uploads目录中创建Picture目录，用来作为图片的保存目录，当然，它得拥有可写权限。
-
 ## 使用
 
 虽然你按照上面的步骤已经可以登录后台了，但是你会发现后台啥都没有，顶上只有两个菜单。这是正常的，因为你的域名跟我初始化的时候使用的域名不一样，需要按照下面的操作。
